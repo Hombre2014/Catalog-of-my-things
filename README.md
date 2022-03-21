@@ -1,4 +1,4 @@
-[](https://img.shields.io/badge/Microverse-blueviolet)
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Catalog-of-my-things!
 
@@ -11,7 +11,7 @@ The project requirements can be viewed [here](https://github.com/microverseinc/c
 To run the project locally do the following:
 
 - Clone the project into your local machine:</br>
-  `git clone https://github.com/Hombre2014/catalog_of_my_things.md)`
+  `git clone https://github.com/Hombre2014/catalog_of_my_things.md`
 - Change the working directory to the project's one:</br>
   `cd catalog-of-my-things`
 - run the command:</br>
