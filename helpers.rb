@@ -11,12 +11,12 @@ module Helpers
 
   def read_file(filename)
     case filename
-    when 'books.json' then retrive_books(file_open(filename))
-    when 'music_albums.json' then retrive_persons(file_open(filename))
-    when 'games.json' then retrive_rentals(file_open(filename))
-    when 'ganres.json' then retrive_rentals(file_open(filename))
-    when 'labels.json' then retrive_rentals(file_open(filename))
-    when 'authors.json' then retrive_rentals(file_open(filename))
+    when 'books.json' then load_books(file_open(filename))
+    when 'music_albums.json' then load_music_albums(file_open(filename))
+    when 'games.json' then load_games(file_open(filename))
+    when 'ganres.json' then load_genres(file_open(filename))
+    when 'labels.json' then load_labels(file_open(filename))
+    when 'authors.json' then load_authors(file_open(filename))
     end
   end
 
