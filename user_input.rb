@@ -15,6 +15,7 @@ class UserInput
     @save_data = SaveData.new(@music_albums, @genres)
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def input
     case @choice
     when 1 then list_books
@@ -34,4 +35,5 @@ class UserInput
       puts "\nPlease, enter a valid number between 1 and 10.\n"
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
