@@ -77,8 +77,6 @@ module Helpers
 
   # end
 
-#   def add_music_album; end
-
   def add_game
     print 'Is the game multiplayer: '
     multiplayer = gets.chomp
