@@ -1,5 +1,4 @@
 require 'date'
-require_relative './label'
 
 class Item
   attr_reader :label, :genre, :author, :id
