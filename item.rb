@@ -24,6 +24,11 @@ class Item
     @genre.add_item(self) unless @genre.items.inculede?(self)
   end
 
+  def game_author=(author)
+    @author = author
+    author.items.push(self) unless author.items.include?(self)
+  end
+
   # def author=(author)
   #   @author = author
   #   @author.items.push(self) unless @author.items.inculede?(self)
