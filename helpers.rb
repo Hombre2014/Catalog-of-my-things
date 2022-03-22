@@ -4,7 +4,6 @@ require_relative 'music_album'
 require_relative 'genre'
 require 'json'
 
-
 module Helpers
   def file_open(filename)
     if File.exist?(filename)
@@ -42,8 +41,6 @@ module Helpers
   #   end
   # end
 
-#   def list_music_albums; end
-
   def list_games
     games = JSON.parse(File.read('games.json'))
     if games.empty?
@@ -58,11 +55,11 @@ module Helpers
     end
   end
 
-#   def list_genres; end
+  #   def list_genres; end
 
-#   def list_labels; end
+  #   def list_labels; end
 
-#   def list_authors; end
+  #   def list_authors; end
 
   def create_music_album_obj(music_album)
     { name: music_album.name, publish_date: music_album.publish_date, on_spotify: music_album.on_spotify }
