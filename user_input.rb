@@ -3,6 +3,7 @@ require_relative 'helpers'
 class UserInput
   def initialize(choice)
     @choice = choice
+    @retrieve_data = RetrieveData.new(@books, @games)
   end
 
   case @choice

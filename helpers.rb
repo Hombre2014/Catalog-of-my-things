@@ -33,7 +33,6 @@ module Helpers
     @books.each do |book|
       puts "Name: #{book.name}, Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
     end
-    
   end
 
   def list_music_albums
@@ -67,4 +66,16 @@ module Helpers
   def add_game
     
   end
+
+  def load_games
+    json = File.read('games.json')
+    if json.empty?
+      []
+    else
+      parsed_json = JSON.parse(json)
+      parsed_json.map do |game|
+        new_game = Game.new(game['multiplayer'], game['last_played_at'], game['published_date'], game['_archived'])
+        new_game
+      end
+    end
 end
