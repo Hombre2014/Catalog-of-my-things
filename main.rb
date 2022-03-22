@@ -23,3 +23,6 @@ class Main
     user_input = UserInput.new(choice)
   end
 end
+
+main = Main.new
+main.start

@@ -1,3 +1,5 @@
+require_relative 'book'
+
 module Helpers
   def file_open(filename)
     if File.exist?(filename)
@@ -26,12 +28,12 @@ module Helpers
     file.close
   end
 
-  def list_books(books)
-    puts 'There are no books in the catalog' if n = File.read('persons.json')
-    if json.empty?
+  def list_books
+    books = read_file('books.json');
+    puts 'There are no books in the catalog' if books.empty?
 
     @books.each do |book|
-      puts "Name: #{book.name}, Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
+      puts "Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
     end
   end
 
@@ -56,7 +58,11 @@ module Helpers
   end
 
   def add_book
-    
+    puts 'Enter the publisher of the book'
+    publisher = gets.chomp
+    puts 'Enter the cover state of the book'
+    cover_state = gets.chomp
+    @books << Book.new(publisher, cover_state)
   end
 
   def add_music_album
@@ -65,6 +71,11 @@ module Helpers
 
   def add_game
     
+  end
+
+  def exit_app
+    save_books()
+    puts "Successfully exit app"
   end
 
   def load_games
@@ -78,4 +89,20 @@ module Helpers
         new_game
       end
     end
+  end
+
+  def load_books
+    data = []
+    @books.each do |book|
+      data.push(Book.new(book['publisher'], book['cover_state']))
+    end
+    data
+  end
+  def save_books
+    data = []
+    @books.each do |book|
+      data.push({'publisher':book.publisher, 'cover_state': book.cover_state}) 
+    end
+    save_file('books.json', JSON.generate(data))
+  end
 end

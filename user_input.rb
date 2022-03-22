@@ -1,13 +1,16 @@
 require_relative 'helpers'
 
+
 class UserInput
+  include Helpers
+
   def initialize(choice)
     @choice = choice
-    @retrieve_data = RetrieveData.new(@books, @games)
+    #@retrieve_data = RetrieveData.new(@books, @games)
   end
 
   case @choice
-  when 1 then list_books
+  when '1' then list_books
   when 2 then list_music_albums
   when 3 then list_games
   when 4 then list_genres
@@ -18,4 +21,6 @@ class UserInput
   when 9 then add_game
   when 10 then exit_app
   end
+
 end
+  
