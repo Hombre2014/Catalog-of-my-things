@@ -5,7 +5,6 @@ require_relative 'save_data'
 class UserInput
   include Helpers
 
-  # rubocop:disable Metrics/CyclomaticComplexity
 #   def compute_choice(choice)
 #     case choice
 #     when '1' then list_books
@@ -20,6 +19,7 @@ class UserInput
 #     when 10 then exit_app
 #     end
 #   end
+  
   def initialize(choice, music_albums, genres)
     @choice = choice
     @music_albums = music_albums
