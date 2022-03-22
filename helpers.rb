@@ -26,7 +26,13 @@ module Helpers
     file.close
   end
 
-  def list_books
+  def list_books(books)
+    puts 'There are no books in the catalog' if n = File.read('persons.json')
+    if json.empty?
+
+    @books.each do |book|
+      puts "Name: #{book.name}, Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
+    end
     
   end
 
