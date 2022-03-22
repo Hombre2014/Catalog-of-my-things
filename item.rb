@@ -14,20 +14,15 @@ class Item
     @archived = true if can_be_archived?
   end
 
-  # def label=(label)
-  #   @label = label
-  #   @label.items.push(self) unless @label.items.inculede?(self)
-  # end
-
   def genre=(genre)
     @genre = genre
-    @genre.add_item(self) unless @genre.items.inculede?(self)
+    @genre.add_item(self) unless @genre.items.include?(self)
   end
 
-  # def author=(author)
-  #   @author = author
-  #   @author.items.push(self) unless @author.items.inculede?(self)
-  # end
+  def game_author=(author)
+    @author = author
+    author.items.push(self) unless author.items.include?(self)
+  end
 
   private
 
