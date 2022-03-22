@@ -1,4 +1,6 @@
 require_relative 'book'
+require_relative 'music_album'
+require_relative 'genre'
 
 module Helpers
   def file_open(filename)
@@ -28,81 +30,77 @@ module Helpers
     file.close
   end
 
-  def list_books
-    books = read_file('books.json');
-    puts 'There are no books in the catalog' if books.empty?
+  # def list_books
+  #   books = read_file('books.json');
+  #   puts 'There are no books in the catalog' if books.empty?
 
-    @books.each do |book|
-      puts "Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
-    end
-  end
+  #   @books.each do |book|
+  #     puts "Publish Data: #{book.publish_date}, cover_state:#{book.cover_state}"
+  #   end
+  # end
 
-  def list_music_albums
-    
-  end
-
-  def list_games
-    
+  def create_music_album_obj(music_album)
+    { name: music_album.name, publish_date: music_album.publish_date, on_spotify: music_album.on_spotify }
   end
 
-  def list_genres
-    
+  def create_genre_obj(genre)
+    { name: genre.name }
   end
 
-  def list_labels
-    
-  end
+  # def list_games
 
-  def list_authors
-    
-  end
+  # end
 
-  def add_book
-    puts 'Enter the publisher of the book'
-    publisher = gets.chomp
-    puts 'Enter the cover state of the book'
-    cover_state = gets.chomp
-    @books << Book.new(publisher, cover_state)
-  end
+  # def list_labels
 
-  def add_music_album
-    
-  end
+  # end
 
-  def add_game
-    
-  end
+  # def list_authors
 
-  def exit_app
-    save_books()
-    puts "Successfully exit app"
-  end
+  # end
 
-  def load_games
-    json = File.read('games.json')
-    if json.empty?
-      []
-    else
-      parsed_json = JSON.parse(json)
-      parsed_json.map do |game|
-        new_game = Game.new(game['multiplayer'], game['last_played_at'], game['published_date'], game['_archived'])
-        new_game
-      end
-    end
-  end
+  # def add_book
+  #   puts 'Enter the publisher of the book'
+  #   publisher = gets.chomp
+  #   puts 'Enter the cover state of the book'
+  #   cover_state = gets.chomp
+  #   @books << Book.new(publisher, cover_state)
+  # end
 
-  def load_books
-    data = []
-    @books.each do |book|
-      data.push(Book.new(book['publisher'], book['cover_state']))
-    end
-    data
-  end
-  def save_books
-    data = []
-    @books.each do |book|
-      data.push({'publisher':book.publisher, 'cover_state': book.cover_state}) 
-    end
-    save_file('books.json', JSON.generate(data))
-  end
+  # def add_game
+
+  # end
+
+  # def exit_app
+  #   save_books()
+  #   puts 'Successfully exit app'
+  # end
+
+  # def load_games
+  #   json = File.read('games.json')
+  #   if json.empty?
+  #     []
+  #   else
+  #     parsed_json = JSON.parse(json)
+  #     parsed_json.map do |game|
+  #       new_game = Game.new(game['multiplayer'], game['last_played_at'], game['published_date'], game['_archived'])
+  #       new_game
+  #     end
+  #   end
+  # end
+
+  # def load_books
+  #   data = []
+  #   @books.each do |book|
+  #     data.push(Book.new(book['publisher'], book['cover_state']))
+  #   end
+  #   data
+  # end
+  # def save_books
+  #   data = []
+  #   @books.each do |book|
+  #     data.push({'publisher':book.publisher, 'cover_state': book.cover_state})
+  #   end
+  #   save_file('books.json', JSON.generate(data))
+  # end
 end
