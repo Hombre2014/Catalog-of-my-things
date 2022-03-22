@@ -20,5 +20,4 @@ class Item
     current_date = Date.today.year
     current_date - Date.parse(@publish_date).year > 10
   end
-
 end
