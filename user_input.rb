@@ -19,7 +19,7 @@ class UserInput
 #     when 10 then exit_app
 #     end
 #   end
-  
+
   def initialize(choice, music_albums, genres)
     @choice = choice
     @music_albums = music_albums
