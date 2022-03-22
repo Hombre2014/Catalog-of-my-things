@@ -2,7 +2,7 @@ require_relative 'user_input'
 
 class Main
   def initialize
-    
+    @user_input = UserInput.new
   end
 
   def start
@@ -20,7 +20,7 @@ class Main
     puts '10. Add a new game'
     print "\nEnter a number: "
     choice = gets.chomp.to_i
-    user_input = UserInput.new(choice)
+    @user_input.compute_choice(choice)
   end
 end
 
