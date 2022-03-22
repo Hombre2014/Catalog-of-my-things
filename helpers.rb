@@ -20,6 +20,12 @@ module Helpers
     end
   end
 
+  def save_file(filename, json)
+    file = File.new(filename, 'w')
+    file.puts(json)
+    file.close
+  end
+
   def list_books
     
   end
