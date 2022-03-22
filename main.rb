@@ -26,7 +26,7 @@ class Main
     print "\nEnter a number: "
     choice = gets.chomp.to_i
     user_input = UserInput.new(choice, @music_albums, @genres)
-    user_input.input
+    user_input.input(choice)
     start
   end
 end

@@ -55,11 +55,13 @@ module Helpers
     end
   end
 
-  #   def list_genres; end
+  # def list_labels
+    
+  # end
 
-  #   def list_labels; end
+  #   def list_authors
 
-  #   def list_authors; end
+  #   end
 
   def create_music_album_obj(music_album)
     { name: music_album.name, publish_date: music_album.publish_date, on_spotify: music_album.on_spotify }
@@ -68,10 +70,6 @@ module Helpers
   def create_genre_obj(genre)
     { name: genre.name }
   end
-
-  # def list_games
-
-  # end
 
   # def list_labels
 
@@ -91,11 +89,6 @@ module Helpers
                'pub_date' => game.publish_date }
     File.write('games.json', JSON.generate(games))
     puts 'Game added successfully!'
-  end
-
-  def exit_app
-    save_books
-    puts 'Successfully exit app'
   end
 
   def load_books
@@ -124,28 +117,6 @@ module Helpers
   #   puts 'Enter the cover state of the book'
   #   cover_state = gets.chomp
   #   @books << Book.new(publisher, cover_state)
-  # end
-
-  # def add_game
-
-  # end
-
-  # def exit_app
-  #   save_books()
-  #   puts 'Successfully exit app'
-  # end
-
-  # def load_games
-  #   json = File.read('games.json')
-  #   if json.empty?
-  #     []
-  #   else
-  #     parsed_json = JSON.parse(json)
-  #     parsed_json.map do |game|
-  #       new_game = Game.new(game['multiplayer'], game['last_played_at'], game['published_date'], game['_archived'])
-  #       new_game
-  #     end
-  #   end
   # end
 
   # def load_books
