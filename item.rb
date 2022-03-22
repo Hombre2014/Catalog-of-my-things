@@ -21,18 +21,4 @@ class Item
     current_date - Date.parse(@publish_date).year > 10
   end
 
-  # def label=(label)
-  #  @label = label
-  #  @label.items.push(self) unless @label.items.inculede?(self)
-  # end
-  #
-  #   def genre=(genre)
-  #     @genre = genre
-  #     @genre.items.push(self) unless @genre.items.inculede?(self)
-  #   end
-  #
-  #   def author=(author)
-  #     @author = author
-  #     @author.items.push(self) unless @author.items.inculede?(self)
-  #   end
 end
