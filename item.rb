@@ -30,4 +30,9 @@ class Item
     current_date = Date.today.year
     current_date - Date.parse(@publish_date).year > 10
   end
+
+  def label=(label)
+    @label = label
+    label.items.push(self) unless @label.items.include?(self)
+  end
 end
