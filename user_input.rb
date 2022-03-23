@@ -5,7 +5,7 @@ require_relative 'save_data'
 class UserInput
   include Helpers
 
-  def initialize(choice, music_albums, genres,books)
+  def initialize(choice, music_albums, genres, books)
     @choice = choice
     @music_albums = music_albums
     @genres = genres

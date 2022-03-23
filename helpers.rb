@@ -32,7 +32,6 @@ module Helpers
     file.close
   end
 
-
   def list_games
     games = JSON.parse(File.read('games.json'))
     if games.empty?

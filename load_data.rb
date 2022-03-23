@@ -1,8 +1,8 @@
 class LoadData
-  def initialize(music_albums, genres,book)
+  def initialize(music_albums, genres, book)
     @music_albums = music_albums
     @genres = genres
-    @book =book
+    @book = book
   end
 
   def load_music_albums
@@ -30,6 +30,7 @@ class LoadData
       end
     end
   end
+
   def load_books
     json = File.read('books.json')
     if json.empty?
@@ -37,7 +38,7 @@ class LoadData
     else
       parsed_json = JSON.parse(json)
       parsed_json.map do |book|
-        new_book = Book.new(book['publisher'],book['cover_state'],book['publish_date'])
+        new_book = Book.new(book['publisher'], book['cover_state'], book['publish_date'])
         new_book
       end
     end

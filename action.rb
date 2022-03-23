@@ -61,8 +61,6 @@ class ListGenres
   end
 end
 
-
-
 class ListBooks
   def initialize(books)
     @books = books
@@ -77,22 +75,22 @@ class ListBooks
     end
   end
 
-  def add 
+  def add
     puts 'Enter the publisher of the book'
     publisher = gets.chomp
     puts 'Enter the cover state of the book'
     cover_state = gets.chomp
     print 'Date of publish [Enter date in format (yyyy-mm-dd)]: '
     publish_date = gets.chomp
-    @books<<Book.new(publisher, cover_state, publish_date)
+    @books << Book.new(publisher, cover_state, publish_date)
   end
 
-  def save 
+  def save
     puts 'Books succesfuly saved'
-      bookArr = []
-      @books.each do |book|
-        bookArr.push({ publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date })
-      end
-      File.open('books.json', 'w') { |f| f << JSON.generate(bookArr) }
+    book_arr = []
+    @books.each do |book|
+      book_arr.push({ publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date })
+    end
+    File.open('books.json', 'w') { |f| f << JSON.generate(book_arr) }
   end
 end
