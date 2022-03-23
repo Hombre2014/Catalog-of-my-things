@@ -8,7 +8,7 @@ module Helpers
     if File.exist?(filename)
       file = File.open(filename)
       file_data = file.read
-      JSON.parse(file_data)
+      JSON.parse(file_data.to_json)
     else
       []
     end
@@ -16,7 +16,7 @@ module Helpers
 
   def read_file(filename)
     case filename
-    when 'books.json' then load_books(file_open(filename))
+    when 'books.json' then file_open(filename)
     when 'music_albums.json' then load_music_albums(file_open(filename))
     when 'games.json' then load_games(file_open(filename))
     when 'genres.json' then load_genres(file_open(filename))
@@ -29,6 +29,20 @@ module Helpers
     file = File.new(filename, 'w')
     file.puts(json)
     file.close
+  end
+      
+  def list_games
+    games = JSON.parse(File.read('games.json'))
+    if games.empty?
+      puts 'No game in Catalog yet. Please add game from menu!'
+    else
+      games.each do |game|
+        puts "Multiplayer: #{game['multiplayer']}"
+        puts "Last played at: #{game['last_played_at']}"
+        puts "Publication date: #{game['pub_date']}"
+        # puts "Archived: #{game['archived']}"
+      end
+    end
   end
 
   def create_music_album_obj(music_album)

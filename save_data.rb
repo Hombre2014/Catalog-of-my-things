@@ -1,11 +1,13 @@
 require 'json'
+require_relative 'action'
 
 class SaveData
   include Helpers
 
-  def initialize(music_albums, genres)
+  def initialize(music_albums, genres, books)
     @music_albums = music_albums
     @genres = genres
+    @books = books
   end
 
   def save

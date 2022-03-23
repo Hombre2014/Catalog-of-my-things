@@ -2,6 +2,7 @@ require 'json'
 require 'date'
 require_relative 'music_album'
 require_relative 'genre'
+require_relative 'label'
 
 class AddMusicAlbum
   def initialize(music_albums, genres)
@@ -58,5 +59,76 @@ class ListGenres
     @genres.each do |genre|
       puts "\nGenre's name: #{genre.name}"
     end
+  end
+end
+
+class ListBooks
+  def initialize(books, labels)
+    @books = books
+    @labels = labels
+  end
+
+  def display
+    puts "\nList of all the books:"
+    @books.each do |book|
+      puts "\nBook publisher: #{book.publisher}"
+      puts "Publish Date: #{book.publish_date}"
+      puts "Cover state: #{book.cover_state}"
+    end
+  end
+
+  def add
+    puts 'Enter the publisher of the book'
+    publisher = gets.chomp
+    puts 'Enter the cover state of the book'
+    cover_state = gets.chomp
+    print 'Date of publish [Enter date in format (yyyy-mm-dd)]: '
+    publish_date = gets.chomp
+    print 'Do you Want to add a label? Please enter [Y/N]: '
+    answer = gets.chomp.downcase == 'y' || false
+    if answer
+      print 'Enter the label name: '
+      title = gets.chomp
+      print 'Enter the label Color: '
+      color = gets.chomp
+      @labels << Label.new(title, color)
+      puts "\nLabel #{title} added successfully.\n"
+    else
+      puts 'No label added.'
+    end
+    @books << Book.new(publisher, cover_state, publish_date)
+  end
+
+  def save
+    book_arr = []
+    @books.each do |book|
+      book_arr.push({ publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date })
+    end
+    File.open('books.json', 'w') { |f| f << JSON.generate(book_arr) }
+
+    puts 'Books succesfuly saved'
+  end
+end
+
+class ListLabel
+  def initialize(labels)
+    @labels = labels
+  end
+
+  def display
+    puts "\nList of all the labels:"
+    @labels.each do |labela|
+      puts "\nLabel's name: #{labela.title} and color: #{labela.color}"
+    end
+  end
+
+  def save
+    label_arr = []
+    @labels.each do |label|
+      label_arr.push({ title: label.title, color: label.color })
+    end
+    File.open('labels.json', 'w') { |f| f << JSON.generate(label_arr) }
+
+    puts 'Labels succesfuly saved'
   end
 end
