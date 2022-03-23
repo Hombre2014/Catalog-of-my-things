@@ -18,7 +18,7 @@ describe 'Games' do
 
     it 'should expect id of game to be an integer' do
       expect(game.id).to be_kind_of(Integer)
-    end 
+    end
 
     it 'should be an instance of' do
       expect(game).to be_an_instance_of Game

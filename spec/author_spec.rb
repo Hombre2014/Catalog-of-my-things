@@ -22,23 +22,19 @@ describe 'Authors and Items' do
       expect(item.publish_date).to be_kind_of(Date)
     end
 
-    it 'should display author last name' do
-      expect(author.last_name).to eq 'Clayton'
+    it 'should return the item passed into author items array' do
+      author.add_item(item)
+      expect(author.items[0]).to eq(item)
     end
 
-    it 'should return the item passed into author items array' do
-      author.add_item(item) 
-      expect(author.items[0]).to eq(item) 
-    end
-    
     it 'should increase array length of items array' do
-      author.add_item(item) 
-      expect(author.items.length).to eq(2) 
+      author.add_item(item)
+      expect(author.items.length).to eq(2)
     end
 
     it 'should expect id of item to be an integer' do
       expect(item.id).to be_kind_of(Integer)
-    end 
+    end
 
     it 'should be an instance of' do
       expect(item).to be_an_instance_of Item
