@@ -6,7 +6,7 @@ class Game < Item
   attr_reader :archived
 
   def initialize(multiplayer, last_played_at, published_date)
-    super(published_date)
+    super(id: nil, publish_date: published_date)
     @multiplayer = multiplayer
     @last_played_at = Date.parse(last_played_at)
   end

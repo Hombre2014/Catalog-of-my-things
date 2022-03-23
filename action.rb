@@ -14,7 +14,7 @@ class AddMusicAlbum
     puts "\Add a new music album"
     print "\nEnter music album's name: "
     name = gets.chomp
-    print "Enter album's pushished date [yyyy-mm-dd]: "
+    print "Enter album's published date [yyyy-mm-dd]: "
     publish_date = Date.parse(gets.chomp)
     print 'Is the album on Spotify (y/n): '
     on_spotify = gets.chomp.downcase == 'y' || false

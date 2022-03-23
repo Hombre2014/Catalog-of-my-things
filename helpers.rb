@@ -20,7 +20,7 @@ module Helpers
     when 'books.json' then file_open(filename)
     when 'music_albums.json' then load_music_albums(file_open(filename))
     when 'games.json' then load_games(file_open(filename))
-    when 'ganres.json' then load_genres(file_open(filename))
+    when 'genres.json' then load_genres(file_open(filename))
     when 'labels.json' then load_labels(file_open(filename))
     when 'authors.json' then load_authors(file_open(filename))
     end
@@ -41,7 +41,7 @@ module Helpers
         puts "Multiplayer: #{game['multiplayer']}"
         puts "Last played at: #{game['last_played_at']}"
         puts "Publication date: #{game['pub_date']}"
-        puts "Archived: #{game['archived']}"
+        # puts "Archived: #{game['archived']}"
       end
     end
   end
@@ -69,4 +69,47 @@ module Helpers
     File.write('games.json', JSON.generate(games))
     puts 'Game added successfully!'
   end
+
+  def load_books
+    data = []
+    @books.each do |book|
+      data.push(Book.new(book['publisher'], book['cover_state']))
+    end
+    data
+  end
+
+  def save_books
+    data = []
+    @books.each do |book|
+      data.push({ publisher: book.publisher, cover_state: book.cover_state })
+    end
+    save_file('books.json', JSON.generate(data))
+  end
+
+  # def list_authors
+
+  # end
+
+  # def add_book
+  #   puts 'Enter the publisher of the book'
+  #   publisher = gets.chomp
+  #   puts 'Enter the cover state of the book'
+  #   cover_state = gets.chomp
+  #   @books << Book.new(publisher, cover_state)
+  # end
+
+  # def load_books
+  #   data = []
+  #   @books.each do |book|
+  #     data.push(Book.new(book['publisher'], book['cover_state']))
+  #   end
+  #   data
+  # end
+  # def save_books
+  #   data = []
+  #   @books.each do |book|
+  #     data.push({'publisher':book.publisher, 'cover_state': book.cover_state})
+  #   end
+  #   save_file('books.json', JSON.generate(data))
+  # end
 end
