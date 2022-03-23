@@ -1,9 +1,13 @@
 require_relative 'helpers'
 require_relative 'action'
 require_relative 'save_data'
+require_relative 'game_utils'
+require_relative 'author_utils'
 
 class UserInput
   include Helpers
+  include GameUtils
+  include AuthorUtils
 
   def initialize(choice, music_albums, genres)
     @choice = choice
