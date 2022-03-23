@@ -1,49 +1,41 @@
-require './helpers'
-require_relative 'book'
-
-
+require_relative 'helpers'
+require_relative 'action'
+require_relative 'save_data'
 
 class UserInput
   include Helpers
 
-  def initialize
-    @books = load_books
-    #@retrieve_data = RetrieveData.new(@books, @games)
+  def initialize(choice, music_albums, genres,books)
+    @choice = choice
+    @music_albums = music_albums
+    @genres = genres
+    @list_genres = ListGenres.new(genres)
+    @list_books = ListBooks.new(books)
+    @list_music_albums = ListMusicAlbums.new(music_albums, genres)
+    @add_music_album = AddMusicAlbum.new(music_albums, genres)
+    @save_data = SaveData.new(@music_albums, @genres, @books)
   end
-  def list_of_options(choice)
-    case choice
-    when 1 then list_books
-    when 2 then list_music_albums
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def input
+    case @choice
+    when 1 then @list_books.display
+    when 2 then @list_music_albums.display
     when 3 then list_games
-    when 4 then list_genres
+    when 4 then @list_genres.display
     when 5 then list_labels
     when 6 then list_authors
-    when 7 then add_book
-    when 8 then add_music_album
+    when 7 then @list_books.add
+    when 8 then @add_music_album.add
     when 9 then add_game
-    when 10 then exit_app
+    when 10
+      @list_books.save
+      @save_data.save
+      puts "\nThank you for using Catalog of my things app. Goodbye!"
+      exit
+    else
+      puts "\nPlease, enter a valid number between 1 and 10.\n"
     end
   end
-
-  
-  def list_books
-    puts 'There are no books in the catalog' if @books.empty?
-    @books.each do |book|
-      puts "Publish Data: #{book['publish_date']}, cover_state:#{book['cover_state']} , publisher: #{book['publisher']}"
-    end
-  end
-
-  def add_book
-    puts 'Enter the publisher of the book'
-    publisher = gets.chomp
-    puts 'Enter the cover state of the book'
-    cover_state = gets.chomp
-    print 'Date of publish [Enter date in format (yyyy-mm-dd)]: '
-    publish_date = gets.chomp
-    return unless publish_date
-    @books.push(Book.new(publisher, cover_state, publish_date))
-  end
-
-
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
-  

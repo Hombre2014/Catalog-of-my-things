@@ -1,4 +1,7 @@
 require_relative 'book'
+require_relative 'game'
+require_relative 'music_album'
+require_relative 'genre'
 require 'json'
 
 module Helpers
@@ -29,66 +32,42 @@ module Helpers
     file.close
   end
 
-  def list_music_albums
-    
-  end
 
   def list_games
-    
-  end
-
-  def list_genres
-    
-  end
-
-  def list_labels
-    
-  end
-
-  def list_authors
-    
-  end
-
-  def add_music_album
-    
-  end
-
-  def add_game
-    
-  end
-
-  def exit_app
-    save_books
-    puts "Successfully exit app"
-  end
-
-  def load_games
-    json = File.read('games.json')
-    if json.empty?
-      []
+    games = JSON.parse(File.read('games.json'))
+    if games.empty?
+      puts 'No game in Catalog yet. Please add game from menu!'
     else
-      parsed_json = JSON.parse(json)
-      parsed_json.map do |game|
-        new_game = Game.new(game['multiplayer'], game['last_played_at'], game['published_date'], game['_archived'])
-        new_game
+      games.each do |game|
+        puts "Multiplayer: #{game['multiplayer']}"
+        puts "Last played at: #{game['last_played_at']}"
+        puts "Publication date: #{game['pub_date']}"
+        puts "Archived: #{game['archived']}"
       end
     end
   end
-  def load_books
-    data =[]
-    file_data = File.read('books.json')
-    if file_data.empty?
-      data
-    else
-     JSON.parse(file_data)
 
-    end
+  def create_music_album_obj(music_album)
+    { name: music_album.name, publish_date: music_album.publish_date, on_spotify: music_album.on_spotify }
   end
-  def save_books
-    data = []
-    @books.each do |book|
-      data.push({"publish_date":book['publish_date'],'publisher':book['publisher'], 'cover_state': book['cover_state']}) 
-    end
-    File.open('books.json', 'w') { |f| f << JSON.generate(data) }
+
+  def create_genre_obj(genre)
+    { name: genre.name }
+  end
+
+  def add_game
+    print 'Is the game multiplayer: '
+    multiplayer = gets.chomp
+    print 'When was it last played [YYYY/MM/DD]: '
+    last_played = gets.chomp
+    print 'What is the publish date of the game: '
+    pub_date = gets.chomp
+    game = Game.new(multiplayer, last_played, pub_date)
+    File.write('games.json', JSON.generate([])) unless File.exist? 'games.json'
+    games = JSON.parse(File.read('games.json'))
+    games << { 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at,
+               'pub_date' => game.publish_date }
+    File.write('games.json', JSON.generate(games))
+    puts 'Game added successfully!'
   end
 end

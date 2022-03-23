@@ -1,12 +1,19 @@
 require_relative 'user_input'
+require_relative 'helpers'
+require_relative 'load_data'
 
 class Main
+  include Helpers
   def initialize
-    @user_input = UserInput.new
+    @load_data = LoadData.new(@music_albums, @genres,@ook)
+    @music_albums = @load_data.load_music_albums
+    @genres = @load_data.load_genres
+    @books = @load_data.load_books
   end
 
   def start
-    puts 'Please, choose an option from the menu below.'
+    puts "\nWelcome to catalog of my things app!"
+    puts "\nPlease, choose an option from the menu below.\n"
     puts '1. List all of my books'
     puts '2. List all of my music albums'
     puts '3. List all of my games'
@@ -18,21 +25,12 @@ class Main
     puts '9. Add a new game'
     puts '10. Exit'
     print "\nEnter a number: "
-  end
-  def run
-    puts 'Welcome to catalog of my things app!'
-    loop do
-      start
-      choice = gets.chomp.to_i
-      break if choice == 10
-      user_input = UserInput.new
-      user_input.list_of_options(choice)
-    end
-    @user_input.exit_app
-
-    print 'Thank you for using catalog of my things app!'
+    choice = gets.chomp.to_i
+    user_input = UserInput.new(choice, @music_albums, @genres,@books)
+    user_input.input
+    start
   end
 end
 
-  main = Main.new
-  main.run
+main = Main.new
+main.start
