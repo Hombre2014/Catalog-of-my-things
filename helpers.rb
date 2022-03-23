@@ -2,6 +2,7 @@ require_relative 'book'
 require_relative 'game'
 require_relative 'music_album'
 require_relative 'genre'
+require_relative 'author'
 require 'json'
 
 module Helpers
@@ -50,7 +51,7 @@ module Helpers
         puts "Multiplayer: #{game['multiplayer']}"
         puts "Last played at: #{game['last_played_at']}"
         puts "Publication date: #{game['pub_date']}"
-        # puts "Archived: #{game['archived']}"
+        puts ''
       end
     end
   end
@@ -67,6 +68,18 @@ module Helpers
     { name: genre.name }
   end
 
+  def add_author
+    print 'Enter first name: '
+    f_name = gets.chomp
+    print 'Enter last name: '
+    l_name = gets.chomp
+    author = Author.new(f_name, l_name)
+    File.open('authors.json', 'w') { |f| f.write JSON.generate([]) } unless File.exist? 'authors.json'
+    authors = JSON.parse(File.read('authors.json'))
+    authors << { 'first_name' => author.first_name, 'last_name' => author.last_name }
+    File.write('authors.json', JSON.generate(authors))
+  end
+
   def add_game
     print 'Is the game multiplayer: '
     multiplayer = gets.chomp
@@ -74,8 +87,14 @@ module Helpers
     last_played = gets.chomp
     print 'What is the publish date of the game: '
     pub_date = gets.chomp
+    print 'Do you want to add an author? [y] for yes and [n] for no: '
+    author = gets.chomp
+    case author
+    when 'y' then add_author
+    when 'n' then ''
+    end
     game = Game.new(multiplayer, last_played, pub_date)
-    File.write('games.json', JSON.generate([])) unless File.exist? 'games.json'
+    File.open('games.json', 'w') { |f| f.write JSON.generate([]) } unless File.exist? 'games.json'
     games = JSON.parse(File.read('games.json'))
     games << { 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at,
                'pub_date' => game.publish_date }
@@ -99,9 +118,18 @@ module Helpers
     save_file('books.json', JSON.generate(data))
   end
 
-  # def list_authors
-
-  # end
+  def list_authors
+    authors = JSON.parse(File.read('authors.json'))
+    if authors.empty?
+      puts 'No author in catalog yet!'
+    else
+      authors.each do |author|
+        puts "First name: #{author['first_name']}"
+        puts "Last name: #{author['last_name']}"
+        puts ''
+      end
+    end
+  end
 
   # def add_book
   #   puts 'Enter the publisher of the book'
