@@ -5,10 +5,11 @@ require_relative 'load_data'
 class Main
   include Helpers
   def initialize
-    @load_data = LoadData.new(@music_albums, @genres, @ook)
+    @load_data = LoadData.new(@music_albums, @genres, @books, @labels)
     @music_albums = @load_data.load_music_albums
     @genres = @load_data.load_genres
     @books = @load_data.load_books
+    @labels = @load_data.load_labels
   end
 
   def start
@@ -26,7 +27,7 @@ class Main
     puts '10. Exit'
     print "\nEnter a number: "
     choice = gets.chomp.to_i
-    user_input = UserInput.new(choice, @music_albums, @genres, @books)
+    user_input = UserInput.new(choice, @music_albums, @genres, @books, @labels)
     user_input.input
     start
   end
