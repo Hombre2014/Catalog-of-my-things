@@ -88,11 +88,11 @@ class ListBooks
     answer = gets.chomp.downcase == 'y' || false
     if answer
       print 'Enter the label name: '
-      label_name = gets.chomp
+      title = gets.chomp
       print 'Enter the label Color: '
-      label_color = gets.chomp
-      @labels << Label.new(label_name, label_color)
-      puts "\nLabel #{label_name} added successfully.\n"
+      color = gets.chomp
+      @labels << Label.new(title, color)
+      puts "\nLabel #{title} added successfully.\n"
     else
       puts 'No label added.'
     end
@@ -100,22 +100,14 @@ class ListBooks
   end
 
   def save
-    puts 'Books succesfuly saved'
     book_arr = []
     @books.each do |book|
       book_arr.push({ publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date })
     end
     File.open('books.json', 'w') { |f| f << JSON.generate(book_arr) }
 
-    if @labels.empty?
-      puts 'No label added'
-    else
-      label_arr = []
-      @labels.map do |labela|
-        label_arr.push({ label_name: labela.title, label_color: labela.color })
-      end
-      File.open('labels.json', 'w') { |f| f << JSON.generate(label_arr) }
-    end
+    puts 'Books succesfuly saved'
+
   end
 end
 
@@ -129,5 +121,15 @@ class ListLabel
     @labels.each do |labela|
       puts "\nLabel's name: #{labela.title} and color: #{labela.color}"
     end
+  end
+
+  def save
+    label_arr = []
+    @labels.each do |label|
+      label_arr.push({ title: label.title, color: label.color })
+    end
+    File.open('labels.json', 'w') { |f| f << JSON.generate(label_arr) }
+
+    puts 'Labels succesfuly saved'
   end
 end

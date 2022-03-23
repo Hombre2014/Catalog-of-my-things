@@ -31,6 +31,7 @@ class UserInput
     when 9 then add_game
     when 10
       @list_books.save
+      @list_label.save
       @save_data.save
       puts "\nThank you for using Catalog of my things app. Goodbye!"
       exit
