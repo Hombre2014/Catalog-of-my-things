@@ -20,7 +20,7 @@ module Helpers
     when 'books.json' then load_books(file_open(filename))
     when 'music_albums.json' then load_music_albums(file_open(filename))
     when 'games.json' then load_games(file_open(filename))
-    when 'ganres.json' then load_genres(file_open(filename))
+    when 'genres.json' then load_genres(file_open(filename))
     when 'labels.json' then load_labels(file_open(filename))
     when 'authors.json' then load_authors(file_open(filename))
     end
@@ -50,7 +50,7 @@ module Helpers
         puts "Multiplayer: #{game['multiplayer']}"
         puts "Last played at: #{game['last_played_at']}"
         puts "Publication date: #{game['pub_date']}"
-        puts "Archived: #{game['archived']}"
+        # puts "Archived: #{game['archived']}"
       end
     end
   end
@@ -59,10 +59,6 @@ module Helpers
     
   # end
 
-  #   def list_authors
-
-  #   end
-
   def create_music_album_obj(music_album)
     { name: music_album.name, publish_date: music_album.publish_date, on_spotify: music_album.on_spotify }
   end
@@ -70,10 +66,6 @@ module Helpers
   def create_genre_obj(genre)
     { name: genre.name }
   end
-
-  # def list_labels
-
-  # end
 
   def add_game
     print 'Is the game multiplayer: '
