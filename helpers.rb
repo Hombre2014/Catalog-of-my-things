@@ -1,5 +1,4 @@
 require_relative 'book'
-require_relative 'game'
 require_relative 'music_album'
 require_relative 'genre'
 require 'json'
@@ -31,7 +30,7 @@ module Helpers
     file.puts(json)
     file.close
   end
-
+      
   def list_games
     games = JSON.parse(File.read('games.json'))
     if games.empty?
@@ -54,22 +53,6 @@ module Helpers
     { name: genre.name }
   end
 
-  def add_game
-    print 'Is the game multiplayer: '
-    multiplayer = gets.chomp
-    print 'When was it last played [YYYY/MM/DD]: '
-    last_played = gets.chomp
-    print 'What is the publish date of the game: '
-    pub_date = gets.chomp
-    game = Game.new(multiplayer, last_played, pub_date)
-    File.write('games.json', JSON.generate([])) unless File.exist? 'games.json'
-    games = JSON.parse(File.read('games.json'))
-    games << { 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at,
-               'pub_date' => game.publish_date }
-    File.write('games.json', JSON.generate(games))
-    puts 'Game added successfully!'
-  end
-
   def load_books
     data = []
     @books.each do |book|
@@ -85,31 +68,4 @@ module Helpers
     end
     save_file('books.json', JSON.generate(data))
   end
-
-  # def list_authors
-
-  # end
-
-  # def add_book
-  #   puts 'Enter the publisher of the book'
-  #   publisher = gets.chomp
-  #   puts 'Enter the cover state of the book'
-  #   cover_state = gets.chomp
-  #   @books << Book.new(publisher, cover_state)
-  # end
-
-  # def load_books
-  #   data = []
-  #   @books.each do |book|
-  #     data.push(Book.new(book['publisher'], book['cover_state']))
-  #   end
-  #   data
-  # end
-  # def save_books
-  #   data = []
-  #   @books.each do |book|
-  #     data.push({'publisher':book.publisher, 'cover_state': book.cover_state})
-  #   end
-  #   save_file('books.json', JSON.generate(data))
-  # end
 end
