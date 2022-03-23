@@ -18,7 +18,8 @@ class UserInput
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity
-  def input
+  def input(choice)
+    @choice = choice
     case @choice
     when 1 then @list_books.display
     when 2 then @list_music_albums.display

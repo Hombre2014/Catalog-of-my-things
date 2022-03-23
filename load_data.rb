@@ -51,7 +51,6 @@ class LoadData
       []
     else
       parsed_json = JSON.parse(json)
-      puts parsed_json
       parsed_json.map do |label|
         new_label = Label.new(label['title'], label['color'])
         new_label
