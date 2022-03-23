@@ -56,7 +56,7 @@ module Helpers
   end
 
   # def list_labels
-    
+
   # end
 
   def create_music_album_obj(music_album)
