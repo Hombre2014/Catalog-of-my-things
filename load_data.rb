@@ -1,5 +1,5 @@
 class LoadData
-  def initialize(music_albums, genres, book,label)
+  def initialize(music_albums, genres, book, label)
     @music_albums = music_albums
     @genres = genres
     @book = book
@@ -44,7 +44,7 @@ class LoadData
       end
     end
   end
-  
+
   def load_labels
     json = File.read('labels.json')
     if json.empty?

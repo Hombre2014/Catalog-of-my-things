@@ -63,7 +63,7 @@ class ListGenres
 end
 
 class ListBooks
-  def initialize(books,labels)
+  def initialize(books, labels)
     @books = books
     @labels = labels
   end
@@ -117,9 +117,7 @@ class ListBooks
       File.open('labels.json', 'w') { |f| f << JSON.generate(label_arr) }
     end
   end
-  
 end
-
 
 class ListLabel
   def initialize(labels)
