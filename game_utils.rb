@@ -21,7 +21,7 @@ module GameUtils
     games << { 'multiplayer' => game.multiplayer, 'last_played_at' => game.last_played_at,
                'pub_date' => game.publish_date }
     File.write('games.json', JSON.generate(games))
-    puts 'Game added successfully!'
+    puts "\nGame added successfully!"
   end
 
   def list_games

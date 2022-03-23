@@ -11,7 +11,7 @@ class AddMusicAlbum
   end
 
   def add
-    puts "\Add a new music album"
+    puts "\nAdd a new music album"
     print "\nEnter music album's name: "
     name = gets.chomp
     print "Enter album's published date [yyyy-mm-dd]: "
@@ -40,11 +40,15 @@ class ListMusicAlbums
   end
 
   def display
-    puts "\nList of all the music albums:"
-    @music_albums.each do |album|
-      puts "\nMusic album's name: #{album.name}"
-      puts "Publish Date: #{album.publish_date}"
-      puts "On Spotify: #{album.on_spotify}"
+    if @music_albums.length.zero?
+      puts "\nThere are no music albums in the catalog. You can add one from the menu."
+    else
+      puts "\nList of all the music albums:"
+      @music_albums.each do |album|
+        puts "\nMusic album's name: #{album.name}"
+        puts "Publish Date: #{album.publish_date}"
+        puts "On Spotify: #{album.on_spotify}"
+      end
     end
   end
 end
@@ -55,9 +59,13 @@ class ListGenres
   end
 
   def display
-    puts "\nList of all the genres:"
-    @genres.each do |genre|
-      puts "\nGenre's name: #{genre.name}"
+    if @genres.length.zero?
+      puts "\nThere are no genres in the catalog. You can add one when you add music albums."
+    else
+      puts "\nList of all the genres:"
+      @genres.each do |genre|
+        puts "\nGenre's name: #{genre.name}"
+      end
     end
   end
 end
@@ -69,11 +77,15 @@ class ListBooks
   end
 
   def display
-    puts "\nList of all the books:"
-    @books.each do |book|
-      puts "\nBook publisher: #{book.publisher}"
-      puts "Publish Date: #{book.publish_date}"
-      puts "Cover state: #{book.cover_state}"
+    if @books.length.zero?
+      puts "\nThere are no books in the catalog. You can add one from the menu."
+    else
+      puts "\nList of all the books:"
+      @books.each do |book|
+        puts "\nBook publisher: #{book.publisher}"
+        puts "Publish Date: #{book.publish_date}"
+        puts "Cover state: #{book.cover_state}"
+      end
     end
   end
 
@@ -115,9 +127,13 @@ class ListLabel
   end
 
   def display
-    puts "\nList of all the labels:"
-    @labels.each do |labela|
-      puts "\nLabel's name: #{labela.title} and color: #{labela.color}"
+    if @labels.length.zero?
+      puts "\nThere are no labels in the catalog. You can add one when you add books."
+    else
+      puts "\nList of all the labels:"
+      @labels.each do |labela|
+        puts "\nLabel's name: #{labela.title} and color: #{labela.color}"
+      end
     end
   end
 

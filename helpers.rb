@@ -18,10 +18,8 @@ module Helpers
     case filename
     when 'books.json' then file_open(filename)
     when 'music_albums.json' then load_music_albums(file_open(filename))
-    when 'games.json' then load_games(file_open(filename))
     when 'genres.json' then load_genres(file_open(filename))
     when 'labels.json' then load_labels(file_open(filename))
-    when 'authors.json' then load_authors(file_open(filename))
     end
   end
 
@@ -30,7 +28,7 @@ module Helpers
     file.puts(json)
     file.close
   end
-      
+
   def list_games
     games = JSON.parse(File.read('games.json'))
     if games.empty?
@@ -40,7 +38,6 @@ module Helpers
         puts "Multiplayer: #{game['multiplayer']}"
         puts "Last played at: #{game['last_played_at']}"
         puts "Publication date: #{game['pub_date']}"
-        # puts "Archived: #{game['archived']}"
       end
     end
   end
