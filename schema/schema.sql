@@ -25,3 +25,17 @@ CREATE TABLE music_albums (
 	on_spotify BOOLEAN,
 	FOREIGN KEY(id) REFERENCES item(id)
 );
+
+CREATE TABLE games (
+	id INT GENERATED ALWAYS AS IDENTITY,
+	multiplayer BOOLEAN,
+	last_played_at DATE,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE author (
+	id INT GENERATED ALWAYS AS IDENTITY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	PRIMARY KEY(id)
+);
