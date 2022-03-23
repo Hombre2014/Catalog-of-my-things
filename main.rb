@@ -14,7 +14,8 @@ class Main
 
   def start
     puts "\nWelcome to catalog of my things app!"
-    puts "\nPlease, choose an option from the menu below.\n"
+    puts "\nPlease, choose an option from the menu below."
+    puts ''
     puts '1. List all of my books'
     puts '2. List all of my music albums'
     puts '3. List all of my games'

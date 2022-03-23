@@ -29,6 +29,8 @@ module GameUtils
     if games.empty?
       puts 'No game in Catalog yet. Please add game from menu!'
     else
+      puts "\nList of all the games"
+      puts ''
       games.each do |game|
         puts "Multiplayer: #{game['multiplayer']}"
         puts "Last played at: #{game['last_played_at']}"

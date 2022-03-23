@@ -78,18 +78,18 @@ class ListBooks
   end
 
   def add
-    puts 'Enter the publisher of the book'
+    print "\nEnter the publisher of the book: "
     publisher = gets.chomp
-    puts 'Enter the cover state of the book'
+    print "\nEnter the cover state of the book: "
     cover_state = gets.chomp
-    print 'Date of publish [Enter date in format (yyyy-mm-dd)]: '
+    print "\nDate of publish [Enter date in format (yyyy-mm-dd)]: "
     publish_date = gets.chomp
-    print 'Do you Want to add a label? Please enter [Y/N]: '
+    print "\nDo you Want to add a label? Please enter [Y/N]: "
     answer = gets.chomp.downcase == 'y' || false
     if answer
-      print 'Enter the label name: '
+      print "\nEnter the label name: "
       title = gets.chomp
-      print 'Enter the label Color: '
+      print "\nEnter the label color: "
       color = gets.chomp
       @labels << Label.new(title, color)
       puts "\nLabel #{title} added successfully.\n"
@@ -97,6 +97,7 @@ class ListBooks
       puts 'No label added.'
     end
     @books << Book.new(publisher, cover_state, publish_date)
+    puts 'Book added successfully.'
   end
 
   def save
@@ -105,8 +106,6 @@ class ListBooks
       book_arr.push({ publisher: book.publisher, cover_state: book.cover_state, publish_date: book.publish_date })
     end
     File.open('books.json', 'w') { |f| f << JSON.generate(book_arr) }
-
-    puts 'Books succesfuly saved'
   end
 end
 
@@ -128,7 +127,5 @@ class ListLabel
       label_arr.push({ title: label.title, color: label.color })
     end
     File.open('labels.json', 'w') { |f| f << JSON.generate(label_arr) }
-
-    puts 'Labels succesfuly saved'
   end
 end

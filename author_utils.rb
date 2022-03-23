@@ -19,6 +19,8 @@ module AuthorUtils
     if authors.empty?
       puts 'No author in catalog yet!'
     else
+      puts "\nList of all the authors"
+      puts ''
       authors.each do |author|
         puts "First name: #{author['first_name']}"
         puts "Last name: #{author['last_name']}"
