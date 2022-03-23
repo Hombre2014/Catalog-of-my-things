@@ -107,7 +107,6 @@ class ListBooks
     File.open('books.json', 'w') { |f| f << JSON.generate(book_arr) }
 
     puts 'Books succesfuly saved'
-
   end
 end
 
