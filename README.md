@@ -2,6 +2,9 @@
 
 # Catalog-of-my-things!
 
+This is the Ruby group capstone project.
+In this project, we will create a console app that will help you to keep a record of different types of things you own: books, music albums, and games. The data will be stored in JSON files but we will also prepare a database with tables structure analogical to the program's class structure.
+
 ## Project requirements
 
 The project requirements can be viewed [here](https://github.com/microverseinc/curriculum-ruby/blob/main/group-capstone/catalog_of_my_things.md)
