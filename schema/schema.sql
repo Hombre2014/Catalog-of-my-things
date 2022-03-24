@@ -44,8 +44,7 @@ create table book(
 	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	publisher VARCHAR(100),
 	cover_state VARCHAR(10),
-	item_id INT,
-	FOREIGN KEY (item_id) REFERENCES item (id),
+	FOREIGN KEY (id) REFERENCES item (id),
 )
 
 CREATE TABLE labels (
