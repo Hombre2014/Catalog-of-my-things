@@ -6,6 +6,10 @@
 
 The project requirements can be viewed [here](https://github.com/microverseinc/curriculum-ruby/blob/main/group-capstone/catalog_of_my_things.md)
 
+## Video presentation
+
+[Video](https://drive.google.com/file/d/15RoLKJHf2C2qGKtn5j5qDkDSFixmsxR1/view)
+
 ## Usage
 
 To run the project locally do the following:
@@ -22,10 +26,12 @@ To run the project locally do the following:
 - Major languages: Ruby
 - Tested with: - [Rubocop](https://rubocop.org/) and [Rspec](https://rspec.info/)
 
+## To run the tests
+
 To run the tests cd to the spec directory:
 `cd spec`
 Type this command to run the tests:
-`rspec FILENAME`
+`rspec .`
 
 ## Authors
 
