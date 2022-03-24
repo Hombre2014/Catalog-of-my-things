@@ -3,8 +3,12 @@ require 'json'
 
 module GameUtils
   def add_game
-    print 'Is the game multiplayer: '
+    print 'Is the game multiplayer? [y] for yes and [n] for no: '
     multiplayer = gets.chomp
+    case multiplayer
+    when 'y' then multiplayer = 'Yes'
+    when 'n' then multiplayer = 'No'
+    end
     print 'When was it last played [YYYY/MM/DD]: '
     last_played = gets.chomp
     print 'What is the publish date of the game: '
@@ -15,6 +19,10 @@ module GameUtils
     when 'y' then add_author
     when 'n' then ''
     end
+    create_game(multiplayer, last_played, pub_date)
+  end
+
+  def create_game(multiplayer, last_played, pub_date)
     game = Game.new(multiplayer, last_played, pub_date)
     File.write('games.json', JSON.generate([])) unless File.exist? 'games.json'
     games = JSON.parse(File.read('games.json'))

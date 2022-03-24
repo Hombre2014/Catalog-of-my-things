@@ -14,5 +14,9 @@ describe 'Genre test' do
       genre.add_item(new_item)
       expect(genre.items.length).to eq 1
     end
+
+    it 'has a publish date' do
+      expect(new_item.publish_date).to eq Date.parse('2000/11/20')
+    end
   end
 end
