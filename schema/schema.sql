@@ -39,3 +39,17 @@ CREATE TABLE author (
 	last_name VARCHAR(50),
 	PRIMARY KEY(id)
 );
+
+create table book(
+	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	publisher VARCHAR(100),
+	cover_state VARCHAR(10),
+	item_id INT,
+	FOREIGN KEY (item_id) REFERENCES item (id),
+)
+
+CREATE TABLE labels (
+	id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+	title VARCHAR(100),
+	color VARCHAR(10),
+);
